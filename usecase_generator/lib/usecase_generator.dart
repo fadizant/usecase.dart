@@ -8,7 +8,7 @@ Builder useCaseGenerator(BuilderOptions options) => PartBuilder(
       [UseCaseGenerator(options.config)],
       '.uc.dart',
       header: '''
-// GENERATED CODE - DO NOT MODIFY BY HAND
+// GENERATED CODE - DO NOT MODIFY {FADI ABUZANT}
     ''',
       options: options,
     );

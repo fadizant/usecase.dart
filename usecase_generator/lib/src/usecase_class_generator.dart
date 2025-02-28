@@ -27,9 +27,13 @@ class UseCaseClassGenerator {
     final methodClassName = '${_toPascalCase(methodName)}UseCase';
     final repoParamsClassName = '${_toPascalCase(methodName)}Params';
 
-    if (!isInjectableDI) {
-      _generateRiverpodDI(methodName, methodClassName);
+    // if (!isInjectableDI) {
+    //   _generateRiverpodDI(methodName, methodClassName);
+    // }
+    if (isInjectableDI) {
+      _stringBuffer.writeln('@Injectable()');
     }
+
     _generateUseCaseClass(
       methodElement,
       methodName,
@@ -45,15 +49,15 @@ class UseCaseClassGenerator {
     }
   }
 
-  void _generateRiverpodDI(String methodName, String methodClassName) {
-    _stringBuffer.writeln(
-      'final ${_toLowerCamelCase(methodName)}UseCaseProvider = Provider(',
-    );
-    _stringBuffer.writeln(
-      '  (ref) => $methodClassName(ref.read(${_toLowerCamelCase(repositoryClassName)}Provider)),',
-    );
-    _stringBuffer.writeln(');');
-  }
+  // void _generateRiverpodDI(String methodName, String methodClassName) {
+  //   _stringBuffer.writeln(
+  //     'final ${_toLowerCamelCase(methodName)}UseCaseProvider = Provider(',
+  //   );
+  //   _stringBuffer.writeln(
+  //     '  (ref) => $methodClassName(ref.read(${_toLowerCamelCase(repositoryClassName)}Provider)),',
+  //   );
+  //   _stringBuffer.writeln(');');
+  // }
 
   void _generateUseCaseClass(
     MethodElement methodElement,
